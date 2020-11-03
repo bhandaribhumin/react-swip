@@ -23,9 +23,9 @@ import {
 import React from "react";
 
 interface sliderProp {
-  slider:any,
-    scrollX:any,
-    ITEM_SIZE:number
+  slider: any;
+  scrollX: any;
+  ITEM_SIZE: number;
 }
 const { width, height } = Dimensions.get("window");
 
@@ -36,7 +36,6 @@ export const assets = [
   require("./assets/5.jpg"),
   require("./assets/1.jpg"),
 ];
-
 
 const styles = StyleSheet.create({
   container: {
@@ -59,12 +58,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const Swiper = ({ slider, scrollX,ITEM_SIZE}:sliderProp) => {
+const Swiper = ({ slider, scrollX, ITEM_SIZE }: sliderProp) => {
   const clock = useClock();
   const index = useValue(0);
   const offsetX = useValue(0);
   const translateX = useValue(0);
-  const snapPoints = slider.map((_, i:number) => i * -width);
+  const snapPoints = slider.map((_, i: number) => i * -width);
   const {
     gestureHandler,
     state,
@@ -93,13 +92,16 @@ const Swiper = ({ slider, scrollX,ITEM_SIZE}:sliderProp) => {
       <PanGestureHandler {...gestureHandler}>
         <Animated.View style={StyleSheet.absoluteFill}>
           <Animated.View
-          
-            style={[styles.pictures,{width:width*slider.length}, { transform: [{ translateX }] }]}
+            style={[
+              styles.pictures,
+              { width: width * slider.length },
+              { transform: [{ translateX }] },
+            ]}
           >
-            {slider.map((data:any) => (
+            {slider.map((data: any) => (
               <View key={data.key} style={styles.picture}>
-                <Text style={{color:'red'}}>{data.backdrop}</Text>
-                <Image style={styles.image} source={{uri:data.backdrop}} />
+                <Text style={{ color: "red" }}>{data.backdrop}</Text>
+                <Image style={styles.image} source={{ uri: data.backdrop }} />
               </View>
             ))}
           </Animated.View>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 import {
   Animated,
@@ -11,17 +11,17 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native';
+} from "react-native";
 
-import Backdrop from './componenets/Backdrop'
-import { LinearGradient } from 'expo-linear-gradient';
-import { SLIDER_DATA } from './slider_data';
-import Swiper from './Swiper';
+import Backdrop from "./componenets/Backdrop";
+import { LinearGradient } from "expo-linear-gradient";
+import { SLIDER_DATA } from "./slider_data";
+import Swiper from "./Swiper";
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get("window");
 
 const SPACING = 5;
-const ITEM_SIZE = Platform.OS === 'ios' ? width * 0.72 : width * 0.72;
+const ITEM_SIZE = Platform.OS === "ios" ? width * 0.72 : width * 0.72;
 const EMPTY_ITEM_SIZE = (width - ITEM_SIZE) / 2;
 const BACKDROP_HEIGHT = height;
 
@@ -31,15 +31,18 @@ const Loading = () => (
   </View>
 );
 
-
 export default function App() {
   const [slider, setSlider] = React.useState<any>([]);
-  
+
   const scrollX = React.useRef(new Animated.Value(0)).current;
- 
+
   React.useEffect(() => {
     if (slider.length === 0) {
-      setSlider([{ key: 'empty-left' }, ...SLIDER_DATA, { key: 'empty-right' }]);
+      setSlider([
+        { key: "empty-left" },
+        ...SLIDER_DATA,
+        { key: "empty-right" },
+      ]);
     }
   }, []);
 
@@ -54,11 +57,11 @@ export default function App() {
         keyExtractor={(item) => item.key}
         horizontal
         bounces={false}
-        decelerationRate={Platform.OS === 'ios' ? 0 : 0.98}
+        decelerationRate={Platform.OS === "ios" ? 0 : 0.98}
         renderToHardwareTextureAndroid
-        contentContainerStyle={{ alignItems: 'flex-end' }}
+        contentContainerStyle={{ alignItems: "flex-end" }}
         snapToInterval={ITEM_SIZE}
-        snapToAlignment='start'
+        snapToAlignment="start"
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
           { useNativeDriver: false }
@@ -74,8 +77,8 @@ export default function App() {
                 style={{
                   marginHorizontal: SPACING,
                   padding: SPACING,
-                  alignItems: 'center',
-                  backgroundColor: 'transparent',
+                  alignItems: "center",
+                  backgroundColor: "transparent",
                   borderRadius: 34,
                 }}
               >
@@ -95,8 +98,8 @@ export default function App() {
 const styles = StyleSheet.create({
   loadingContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   container: {
     flex: 1,
@@ -104,13 +107,13 @@ const styles = StyleSheet.create({
   paragraph: {
     margin: 24,
     fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
   },
   posterImage: {
-    width: '100%',
+    width: "100%",
     height: ITEM_SIZE * 0.75,
-    resizeMode: 'cover',
+    resizeMode: "cover",
     borderRadius: 24,
     margin: 0,
     marginBottom: 10,
