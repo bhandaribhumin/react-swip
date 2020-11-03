@@ -32,7 +32,6 @@ const { width, height } = Dimensions.get("window");
 const Backdrop = ({ slider, scrollX, ITEM_SIZE }: BackdropProp) => {
   const translateX = useValue(0);
   const snapPoints = slider.map((_, i: number) => i * -width);
-  console.log('width',width);
   return (
    
     <View  style={styles.container}>
