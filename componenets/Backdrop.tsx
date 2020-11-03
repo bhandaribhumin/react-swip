@@ -41,9 +41,9 @@ const Backdrop = ({ slider, scrollX, ITEM_SIZE }: BackdropProp) => {
               return null;
             }
             const translateX = scrollX.interpolate({
-              inputRange: [(index - 1) * ITEM_SIZE, index * ITEM_SIZE],
-              outputRange: [0, width],
-              // extrapolate:'clamp'
+              inputRange: [(index - 2) * ITEM_SIZE, (index - 1) * ITEM_SIZE],
+              outputRange: [width,0],
+            //  extrapolate:'clamp'
             });
             return (
               <Animated.View
