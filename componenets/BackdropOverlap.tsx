@@ -5,11 +5,16 @@ import {
   Dimensions,
   FlatList,
   Image,
+  Platform,
+  StatusBar,
   StyleSheet,
+  Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 
 import { Islider } from "./../slider_data";
+import { useValue } from "react-native-reanimated";
 
 interface BackdropProp {
   slider: Islider;
@@ -17,13 +22,14 @@ interface BackdropProp {
   ITEM_SIZE: number;
 }
 const { width, height } = Dimensions.get("window");
-const Backdrop = ({ slider, scrollX, ITEM_SIZE }: BackdropProp) => {
+const BackdropOverlap = ({ slider, scrollX, ITEM_SIZE }: BackdropProp) => {
+  const translateX = useValue(0);
   const snapPoints = slider.map((_, i: number) => i * -width);
   return (
     <View style={styles.container}>
       <Animated.View style={StyleSheet.absoluteFill}>
         <FlatList
-          data={slider}
+          data={slider.reverse()}
           keyExtractor={(item) => item.key + "-backdrop"}
           removeClippedSubviews={false}
           contentContainerStyle={{ width, height }}
@@ -33,17 +39,17 @@ const Backdrop = ({ slider, scrollX, ITEM_SIZE }: BackdropProp) => {
               return null;
             }
             const translateX = scrollX.interpolate({
-              inputRange: [(index - 2) * ITEM_SIZE, (index - 1) * ITEM_SIZE],
-              outputRange: [width, 0],
-              //  extrapolate:'clamp'
+              inputRange: [(index - 2) * ITEM_SIZE, (index-1) * ITEM_SIZE],
+              outputRange: [0,width],
+            //  extrapolate:'clamp'
             });
             return (
               <Animated.View
                 removeClippedSubviews={false}
                 style={{
                   position: "absolute",
-                  width,
-                  transform: [{ translateX }],
+                  width: translateX,
+                 // transform: [{ translateX }],
                   height,
                   overflow: "hidden",
                 }}
@@ -84,4 +90,4 @@ const styles = StyleSheet.create({
     height: undefined,
   },
 });
-export default Backdrop;
+export default BackdropOverlap;

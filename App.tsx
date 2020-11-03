@@ -48,7 +48,6 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {/* <Swiper slider={slider} scrollX={scrollX} ITEM_SIZE={ITEM_SIZE}/> */}
       <Backdrop slider={slider} scrollX={scrollX} ITEM_SIZE={ITEM_SIZE} />
       <StatusBar hidden />
       <Animated.FlatList
