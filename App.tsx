@@ -1,7 +1,3 @@
-/**
- * Inspiration: https://dribbble.com/shots/8257559-Movie-2-0
- *
- */
 import * as React from 'react';
 
 import {
