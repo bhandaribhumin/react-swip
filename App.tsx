@@ -75,11 +75,10 @@ export default function App() {
             <View style={{ width: ITEM_SIZE }}>
               <Animated.View
                 style={{
+                  marginBottom:70,
                   marginHorizontal: SPACING,
-                  padding: SPACING,
                   alignItems: "center",
-                  backgroundColor: "transparent",
-                  borderRadius: 34,
+                  borderRadius: 5,
                 }}
               >
                 <Image
@@ -112,9 +111,9 @@ const styles = StyleSheet.create({
   },
   posterImage: {
     width: "100%",
-    height: ITEM_SIZE * 0.75,
-    resizeMode: "cover",
-    borderRadius: 24,
+    height: ITEM_SIZE * 0.5,
+    resizeMode:"stretch",
+    borderRadius: 5,
     margin: 0,
     marginBottom: 10,
   },

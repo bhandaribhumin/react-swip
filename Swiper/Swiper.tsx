@@ -10,7 +10,7 @@ import Animated, {
   set,
   useCode,
 } from "react-native-reanimated";
-import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import { Dimensions, FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import {
   snapPoint,
@@ -28,14 +28,6 @@ interface sliderProp {
   ITEM_SIZE: number;
 }
 const { width, height } = Dimensions.get("window");
-
-export const assets = [
-  require("./assets/3.jpg"),
-  require("./assets/2.jpg"),
-  require("./assets/4.jpg"),
-  require("./assets/5.jpg"),
-  require("./assets/1.jpg"),
-];
 
 const styles = StyleSheet.create({
   container: {
@@ -59,10 +51,13 @@ const styles = StyleSheet.create({
 });
 
 const Swiper = ({ slider, scrollX, ITEM_SIZE }: sliderProp) => {
+
+ 
   const clock = useClock();
   const index = useValue(0);
   const offsetX = useValue(0);
   const translateX = useValue(0);
+ 
   const snapPoints = slider.map((_, i: number) => i * -width);
   const {
     gestureHandler,

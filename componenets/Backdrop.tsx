@@ -31,16 +31,17 @@ const Backdrop = ({ slider, scrollX, ITEM_SIZE }: BackdropProp) => {
     <View style={styles.container}>
       <Animated.View style={StyleSheet.absoluteFill}>
         <FlatList
-          data={slider.reverse()}
+          data={slider}
           keyExtractor={(item) => item.key + "-backdrop"}
           removeClippedSubviews={false}
-          contentContainerStyle={{ width, height: height }}
+          contentContainerStyle={{ width, height }}
+          bounces={false}
           renderItem={({ item, index }) => {
             if (!item.backdrop) {
               return null;
             }
             const translateX = scrollX.interpolate({
-              inputRange: [(index - 2) * ITEM_SIZE, (index - 1) * ITEM_SIZE],
+              inputRange: [(index - 1) * ITEM_SIZE, index * ITEM_SIZE],
               outputRange: [0, width],
               // extrapolate:'clamp'
             });
@@ -49,7 +50,8 @@ const Backdrop = ({ slider, scrollX, ITEM_SIZE }: BackdropProp) => {
                 removeClippedSubviews={false}
                 style={{
                   position: "absolute",
-                  width: translateX,
+                  width,
+                  transform: [{ translateX }],
                   height,
                   overflow: "hidden",
                 }}
@@ -74,7 +76,6 @@ const Backdrop = ({ slider, scrollX, ITEM_SIZE }: BackdropProp) => {
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "black",
   },
   pictures: {
     height,
